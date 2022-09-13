@@ -21,6 +21,19 @@ class ViewController: UIViewController {
         isFinishedTypingNumber = true
         
         guard let number = Double(displayLabel.text!) else {fatalError("Cannot convert display label text to a Double")}
+        
+        if let calcMethod = sender.currentTitle {
+            switch calcMethod {
+            case "+/-":
+                displayLabel.text = String(number * -1)
+            case "%":
+                displayLabel.text = String(number / 100)
+            case "AC":
+                displayLabel.text = "0"
+            default:
+                displayLabel.text = "0"
+            }
+        }
     
     }
 
