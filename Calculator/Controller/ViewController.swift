@@ -27,19 +27,14 @@ class ViewController: UIViewController {
         
         //What should happen when a non-number button is pressed
         
-        isFinishedTypingNumber = true
+        isFinishedTypingNumber = true 
   
         if let calcMethod = sender.currentTitle {
-            switch calcMethod {
-            case "+/-":
-                displayValue *= -1
-            case "%":
-                displayValue /= 100
-            case "AC":
-                displayLabel.text = "0"
-            default:
-                displayLabel.text = "0"
+            let calculator = CalculatorLogic(number: displayValue)
+            guard let result = calculator.calculate(symbol: calcMethod) else {
+                fatalError("The result of the calculation is nil")
             }
+            displayValue = result
         }
     
     }
